@@ -60,9 +60,7 @@ const Dashboard: React.FC = () => {
               <img src={income} alt="Income" />
             </header>
             <h1 data-testid="balance-income">
-              {`R$ ${formatValue(
-                balance?.income ? Number(balance.income) : 0,
-              )}`}
+              {`${formatValue(balance?.income ? Number(balance.income) : 0)}`}
             </h1>
           </Card>
           <Card>
@@ -71,9 +69,7 @@ const Dashboard: React.FC = () => {
               <img src={outcome} alt="Outcome" />
             </header>
             <h1 data-testid="balance-outcome">
-              {`R$ ${formatValue(
-                balance?.outcome ? Number(balance.outcome) : 0,
-              )}`}
+              {`${formatValue(balance?.outcome ? Number(balance.outcome) : 0)}`}
             </h1>
           </Card>
           <Card total>
@@ -82,7 +78,7 @@ const Dashboard: React.FC = () => {
               <img src={total} alt="Total" />
             </header>
             <h1 data-testid="balance-total">
-              {`R$ ${formatValue(balance?.total ? Number(balance.total) : 0)}`}
+              {`${formatValue(balance?.total ? Number(balance.total) : 0)}`}
             </h1>
           </Card>
         </CardContainer>
@@ -103,7 +99,8 @@ const Dashboard: React.FC = () => {
                 <tr>
                   <td className="title">{transaction.title}</td>
                   <td className={transaction.type}>
-                    {`R$ ${formatValue(transaction.value)}`}
+                    {transaction.type === 'outcome' && '- '}
+                    {`${formatValue(transaction.value)}`}
                   </td>
                   <td>{transaction.category.title}</td>
                   <td>{formatDate(transaction.created_at)}</td>
